@@ -1,5 +1,5 @@
 <?php
-$FirstName = $_POST['FirstName'];
+/* $FirstName = $_POST['FirstName'];
 $LastName  = $_POST['LastName'];
 $qp1 = $_POST['qp1'];
 $qp2 = $_POST['qp2'];
@@ -30,7 +30,9 @@ if(!empty($FirstName) ||!empty($LastName))
 {
     echo "First Name and Last Name are required";
     die();
-}
+} */
+
+echo ("hello world");
 
 
 
