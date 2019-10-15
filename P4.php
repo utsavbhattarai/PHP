@@ -17,7 +17,7 @@ $qp7 = $_POST['qp7'];
 $qp8 = $_POST['qp8'];
 $qp9 = $_POST['qp9'];
 $qp10 = $_POST['qp10'];
-$time =  date("H:i", strtotime("+5 hours"));
+$time =  date("m/d/Y H:i ", strtotime("+5 hours"));
 $scoreTotal = 0;
 $correctAns = array("a","c","a","a","c","b","a","c","a","P4.php");
 
@@ -60,8 +60,8 @@ if(!empty($FirstName) || !empty($LastName))
 
     //create connection
     //add the above credential to the following mysqli_connect params.
-    //$conn = mysqli_connect("localhost", "root", "","cmps401");
-    $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbName);
+    $conn = mysqli_connect("localhost", "root", "","cmps401");
+    //$conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbName);
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
