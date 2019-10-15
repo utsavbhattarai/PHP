@@ -11,7 +11,7 @@ $qp7 = $_POST['qp7'];
 $qp8 = $_POST['qp8'];
 $qp9 = $_POST['qp9'];
 $qp10 = $_POST['qp10'];
-$time =    
+$time =  date("H:i", strtotime("+5 hours"));
 $scoreTotal = 0;
 $correctAns = array("a","c","a","a","c","b","a","c","a","P4.php");
 
@@ -64,26 +64,31 @@ if(!empty($FirstName) || !empty($LastName))
     }
 
     // sql to create table
-    $q = "CREATE TABLE g101 (
+    $q = "CREATE TABLE trytest (
     FirstName varchar(20),
     LastName varchar(20),
     Score int,
-    Time varchar(20),
-    PRIMARY KEY (FirstName)
+    Time DateTime,
+    PRIMARY KEY (FirstName, LastName)
     )"; 
+    /* $q = "CREATE TABLE person (
+        Name varchar(20),
+       Age int,
+       Date varchar(20),
+       PRIMARY KEY (Name)
+        )"; */
     if (mysqli_query($conn, $q)) {
         echo "Table g101 created successfully";
     } else {
         echo "Table already exists! " . mysqli_error($conn);
     }
-   
     
     //insert query
    /*  $sql = "INSERT INTO g101 (FirstName, LastName, Score, Time)
     VALUES ('$FirstName', '$LastName', $scoreTotal, $time)"; */
-    $sql = "INSERT INTO g101 (FirstName, LastName, Score, Time) 
-    VALUES ('$FirstName', '$LastName',$scoreTotal, $time)
-    ON DUPLICATE KEY UPDATE Score = $scoreTotal, Time= $time";
+    $sql = "INSERT INTO trytest (FirstName, LastName, Score, Time) 
+    VALUES ('$FirstName', '$LastName',$scoreTotal, '$time')
+    ON DUPLICATE KEY UPDATE Score = $scoreTotal, Time = '$time'";
     sendQuery($conn, $sql); 
     echo "Print done!";
     
