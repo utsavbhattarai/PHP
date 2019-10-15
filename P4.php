@@ -1,3 +1,9 @@
+// Connect Php with mysql
+ // Program-ID: P4.php
+ // Author: Utsav Bhattarai, Biraj Basnet, Bisheshwor Ghimire, Eraj Khatiwada
+ // OS: Ubuntu 18
+ // Parser: PHP 7
+
 <?php
 $FirstName = $_POST['FirstName'];
 $LastName  = $_POST['LastName'];
