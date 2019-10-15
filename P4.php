@@ -1,10 +1,10 @@
-// Connect Php with mysql
+<?php
+ // PHP file to connect with mysql
  // Program-ID: P4.php
  // Author: Utsav Bhattarai, Biraj Basnet, Bisheshwor Ghimire, Eraj Khatiwada
  // OS: Ubuntu 18
- // Parser: PHP 7
+ // Parser: PHP 7 
 
-<?php
 $FirstName = $_POST['FirstName'];
 $LastName  = $_POST['LastName'];
 $qp1 = $_POST['qp1'];
@@ -53,50 +53,42 @@ if(!empty($FirstName) || !empty($LastName))
     if($correctAns[9] == $qp10){
         ++$scoreTotal; 
     }
-    echo $scoreTotal;
-    /* $host = "localhost";
+    $host = "localhost";
     $dbUsername = "cmps401";
     $dbPassword = "Mycmps401db";
-    $dbName = "cmps401"; */
+    $dbName = "cmps401"; 
 
     //create connection
     //add the above credential to the following mysqli_connect params.
-    $conn = mysqli_connect("localhost", "root", "","cmps401");
+    //$conn = mysqli_connect("localhost", "root", "","cmps401");
+    $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbName);
     // Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }else{
-        echo "connection successfull!";
+        echo "connection successfull! ";
     }
 
     // sql to create table
-    $q = "CREATE TABLE trytest (
+    $q = "CREATE TABLE g101 (
     FirstName varchar(20),
     LastName varchar(20),
     Score int,
-    Time DateTime,
+    Time varchar(20),
     PRIMARY KEY (FirstName, LastName)
     )"; 
-    /* $q = "CREATE TABLE person (
-        Name varchar(20),
-       Age int,
-       Date varchar(20),
-       PRIMARY KEY (Name)
-        )"; */
+
     if (mysqli_query($conn, $q)) {
-        echo "Table g101 created successfully";
+        echo "Table g101 created successfully ". "<br>";
     } else {
         echo "Table already exists! " . mysqli_error($conn);
     }
     
     //insert query
-   /*  $sql = "INSERT INTO g101 (FirstName, LastName, Score, Time)
-    VALUES ('$FirstName', '$LastName', $scoreTotal, $time)"; */
-    $sql = "INSERT INTO trytest (FirstName, LastName, Score, Time) 
+    $sql = "INSERT INTO g101 (FirstName, LastName, Score, Time) 
     VALUES ('$FirstName', '$LastName',$scoreTotal, '$time')
     ON DUPLICATE KEY UPDATE Score = $scoreTotal, Time = '$time'";
     sendQuery($conn, $sql); 
-    echo "Print done!";
     
 
     //close the connection.
